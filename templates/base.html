@@ -22,6 +22,7 @@
         </style>
         <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/main.css' %}">
+         <link rel="stylesheet" href="{% static 'css/icono.css' %}">
         <script src="{% static 'js/vendor/modernizr-2.6.2.min.js' %}"></script>
     </head>
     <body>
@@ -45,24 +46,21 @@
           <menu class= "login">    
                 {% if user.is_authenticated %}
                 <ul class="nombre">
-                    <li><a id="nombre" href="/{{ user.username }}/">Hola {{user.username|capfirst}}</a></li>
-                    <li><a id="cerrar" href="/cerrar/">Cerrar &raquo;</a></li>
+                    <li><a id="nombre" >Hola {{user.username|capfirst}}</a></li>
+                    <li><a id="cerrar" href="{% url 'cerrar' %}">Cerrar &raquo;</a></li>
                 </ul>                        
                 {% else %}
-                         <form action='/login/' class="navbar-form navbar-right"  method='post'>
-                          
-                          <div class="form-group">
-                            {% csrf_token %}
-                            <input type="text" placeholder="Usuario" class="form-control" name="username" value="" id="username">
-                          </div>
-                          <div class="form-group">
-                            <input type="password" placeholder="Password" class="form-control" name="password" value="" id="password">
-                          </div>
-                          <button type="submit" class="btn btn-success">Ingresar</button>
-                         
-                        </form>
+                 
+                <ul class="redes">     
+                 <li id="conectarse">Conectate con:</li>
+                 <li><a href="{% url 'social:begin' 'facebook' %}" type="button" class="btn btn-primary btnlg btn-lg-customize-fb"><span class="icon-facebook"></span>Facebook</a>
+                  </li>    
+                 <li><a href="{% url 'social:begin' 'twitter' %}" type="button" class="btn btn-primary btn-lgbtn-lg-customize-tw"><span class="icon-twitter"></span>Twitter</a>
+                  </li>    
+                </ul>    
                 {% endif %}
             </menu>  
+
 
         </div><!--/.navbar-collapse -->
       </div>
@@ -103,7 +101,8 @@
       <footer>
         <p>&copy; Company 2014</p>
       </footer>
-    </div> <!-- /container --><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    </div> 
+    <!-- /container --><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
 
         <script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
